@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Sneyder | Senior Graphic Designer & UX/UI</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Portafolio oficial de Art Sneyder (Sneyder Riaño), Diseñador Gráfico Senior, UX/UI, Fotógrafo y Creador Audiovisual con más de 10 años de experiencia.">
+    <meta name="keywords" content="Diseño Gráfico, UX/UI, Branding, Fotografía, Motion Graphics, Art Sneyder, Sneyder Riaño, Portafolio, Web Design">
+    <meta name="author" content="Art Sneyder">
+    <link rel="canonical" href="https://artsneyder.com">
+    <meta property="og:title" content="Art Sneyder | Creative Designer">
+    <meta property="og:description" content="Descubre el trabajo de Art Sneyder, especialista en Diseño Gráfico, UX/UI y Producción Audiovisual.">
+    <meta property="og:image" content="https://i.ibb.co/fYrzHHVH/logo-art-sneyder.png">
+    <meta property="og:url" content="https://artsneyder.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/fYrzHHVH/logo-art-sneyder.png">
+
+    <!-- Google Fonts: Inter & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Nota: Para máxima velocidad en producción, usa Tailwind CLI para compilar un archivo .css) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050505',
+                        darker: '#0a0a0a',
+                        card: '#121212',
+                        accent: '#FF6600', 
+                        accentHover: '#cc5200', 
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'blob': 'blob 10s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate3d(0px, 0px, 0) scale(1)' },
+                            '33%': { transform: 'translate3d(30px, -50px, 0) scale(1.1)' },
+                            '66%': { transform: 'translate3d(-20px, 20px, 0) scale(0.9)' },
+                            '100%': { transform: 'translate3d(0px, 0px, 0) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Reset */
+        body {
+            background-color: theme('colors.dark');
+            color: theme('colors.gray.300'); /* Mejorado el contraste general */
+            overflow-x: hidden;
+            cursor: none; 
+        }
+        ::selection {
+            background-color: theme('colors.accent');
+            color: white;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.dark');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.accent');
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: theme('colors.accent');
+            margin: -4px 0 0 -4px; 
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 102, 0, 0.5);
+            margin: -20px 0 0 -20px; 
+            transition: background-color 0.2s;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background-color: theme('colors.dark');
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .loader-logo {
+            width: 100px;
+            animation: pulse-glow 2s infinite alternate;
+            will-change: transform, filter;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(0.95); filter: drop-shadow(0 0 10px rgba(255,102,0,0.2)); }
+            100% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(255,102,0,0.8)); }
+        }
+
+        /* Marquee - OPTIMIZADO PARA GPU */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            will-change: transform;
+            transform: translateZ(0); /* Forzar aceleración 3D */
+        }
+        .marquee-wrapper:hover .marquee-content {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Ambient Blobs - OPTIMIZADOS PARA GPU */
+        .blob-1 { position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(0,85,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; border-radius: 50%; will-change: transform; transform: translateZ(0); pointer-events: none;}
+        .blob-2 { position: absolute; bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(0,85,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; border-radius: 50%; will-change: transform; transform: translateZ(0); pointer-events: none;}
+
+        /* Gradients */
+        .text-gradient {
+            background: linear-gradient(to right, #FF6600, #FFB84D, #FF6600);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: text-shine 3s linear infinite;
+        }
+
+        @keyframes text-shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Typed Cursor Ajuste */
+        .typed-cursor {
+            color: #00f2fe !important;
+            font-size: 1.1em;
+            margin-left: 6px;
+        }
+
+        /* Utilities */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: theme('colors.accent');
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        .bento-card {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 85, 255, 0.15);
+        }
+        
+        /* Asegurar legibilidad general */
+        p {
+            color: #d1d5db; /* text-gray-300 por defecto para contraste WCAG */
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-accent selection:text-white relative">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+        <img src="https://i.ibb.co/fYrzHHVH/logo-art-sneyder.png" alt="Art Sneyder Logo" class="loader-logo">
+    </div>
+
+    <!-- Background Ambient -->
+    <div class="blob-1 animate-blob"></div>
+    <div class="blob-2 animate-blob" style="animation-delay: 2s;"></div>
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#inicio" class="flex items-center gap-3 z-50">
+                <img src="https://i.ibb.co/fYrzHHVH/logo-art-sneyder.png" alt="Art Sneyder Logo" class="w-10 h-10 object-contain">
+                <span class="font-display font-bold text-xl text-white tracking-wide">Art Sneyder</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8 glass px-8 py-3 rounded-full">
+                <a href="#inicio" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Inicio</a>
+                <a href="#acerca" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Acerca de</a>
+                <a href="#servicios" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Servicios</a>
+                <a href="#portafolio" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Portafolio</a>
+                <a href="#experiencia" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Experiencia</a>
+                <a href="#contacto" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contacto</a>
+            </nav>
+            
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-white z-50 text-2xl focus:outline-none" aria-label="Menú">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+            <a href="#inicio" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Inicio</a>
+            <a href="#acerca" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Acerca de</a>
+            <a href="#servicios" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Servicios</a>
+            <a href="#portafolio" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Portafolio</a>
+            <a href="#experiencia" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Experiencia</a>
+            <a href="#redes" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Redes Sociales</a>
+            <a href="#contacto" class="mobile-link text-2xl font-display font-semibold text-gray-200 hover:text-accent">Contacto</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="flex flex-col items-start z-10 hero-content">
+                    <p class="text-accent font-semibold tracking-widest uppercase mb-4 text-sm flex items-center gap-2">
+                        <span class="w-8 h-[1px] bg-accent inline-block"></span>
+                        Bienvenido
+                    </p>
+                    <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white leading-tight mb-4 drop-shadow-xl">
+                        Hola,<br>Soy <span class="text-gradient">Art Sneyder</span>
+                    </h1>
+                    <div class="h-14 md:h-20 flex items-center my-2">
+                        <p class="text-xl md:text-3xl text-gray-300 font-light flex items-center">
+                            <span id="typed-text" class="inline-block text-black bg-white px-4 py-1.5 md:py-2 rounded-xl font-bold"></span>
+                        </p>
+                    </div>
+                    <p class="mt-6 text-gray-300 max-w-lg text-lg leading-relaxed mb-10">
+                        Transformando ideas en experiencias visuales excepcionales. Creatividad, profesionalismo y más de 10 años de experiencia a tu servicio.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#portafolio" class="bg-accent hover:bg-accentHover text-white px-8 py-4 rounded-full font-medium transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.4)] hover:shadow-[0_0_30px_rgba(0,85,255,0.6)] flex items-center gap-2 focus:ring-4 focus:ring-accent/50">
+                            Ver Portafolio <i class="ph ph-arrow-right"></i>
+                        </a>
+                        <a href="#contacto" class="glass text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-all duration-300 flex items-center gap-2 border border-white/10">
+                            Contáctame
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative z-10 flex justify-center lg:justify-end hero-image">
+                    <div class="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden glass p-4" data-tilt data-tilt-max="3" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-50 rounded-[1.5rem]"></div>
+                        <!-- Carga prioritaria al ser primera pantalla -->
+                        <img src="https://i.ibb.co/ymy9FSSd/art-sneyder.png" alt="Art Sneyder" class="w-full h-full object-cover rounded-[1.5rem] relative z-10" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="acerca" class="py-24 relative z-10 bg-darker">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Text -->
+                    <div class="gsap-fade-up">
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">Sobre mi trayectoria</h2>
+                        <div class="w-20 h-1 bg-accent mb-8"></div>
+                        <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                            Soy <strong class="text-white">Sneyder Riaño</strong>, conocido profesionalmente como <strong class="text-accent">Art Sneyder</strong>. Diseñador gráfico graduado en 2016.
+                        </p>
+                        <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                            Mi pasión radica en la creatividad pura, abarcando desde el branding y desarrollo de identidad visual, hasta el diseño web y UX/UI. A lo largo de mi carrera, he expandido mis habilidades hacia la fotografía y los proyectos audiovisuales.
+                        </p>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            Actualmente, complemento mi labor profesional impulsando comunidades digitales como <strong class="text-white">Bogofija</strong>, demostrando mi compromiso con la cultura y la comunicación gráfica en todas sus formas.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 gap-6 gsap-fade-up">
+                        <div class="glass p-8 rounded-2xl border border-white/5 text-center flex flex-col items-center justify-center">
+                            <i class="ph ph-calendar-star text-4xl text-accent mb-4"></i>
+                            <h3 class="text-4xl font-display font-bold text-white mb-2"><span class="counter" data-target="10">0</span>+</h3>
+                            <p class="text-gray-300 text-sm uppercase tracking-wider font-medium">Años de Experiencia</p>
+                        </div>
+                        <div class="glass p-8 rounded-2xl border border-white/5 text-center flex flex-col items-center justify-center">
+                            <i class="ph ph-files text-4xl text-accent mb-4"></i>
+                            <h3 class="text-4xl font-display font-bold text-white mb-2"><span class="counter" data-target="500">0</span>+</h3>
+                            <p class="text-gray-300 text-sm uppercase tracking-wider font-medium">Proyectos Realizados</p>
+                        </div>
+                        <div class="glass p-8 rounded-2xl border border-white/5 text-center flex flex-col items-center justify-center">
+                            <i class="ph ph-users text-4xl text-accent mb-4"></i>
+                            <h3 class="text-4xl font-display font-bold text-white mb-2"><span class="counter" data-target="100">0</span>+</h3>
+                            <p class="text-gray-300 text-sm uppercase tracking-wider font-medium">Clientes Satisfechos</p>
+                        </div>
+                        <div class="glass p-8 rounded-2xl border border-white/5 text-center flex flex-col items-center justify-center">
+                            <i class="ph ph-bezier-curve text-4xl text-accent mb-4"></i>
+                            <h3 class="text-4xl font-display font-bold text-white mb-2"><span class="counter" data-target="3000">0</span>+</h3>
+                            <p class="text-gray-300 text-sm uppercase tracking-wider font-medium">Diseños Creados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="py-24 relative z-10">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 gsap-fade-up">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Mis Servicios</h2>
+                    <p class="text-gray-300 text-lg">Soluciones integrales de diseño para llevar tu marca al siguiente nivel.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Cards (Removido Vanilla Tilt individual para mejorar scroll jank en móviles, mejorado feedback visual con hover CSS) -->
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-pen-nib text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Diseño Gráfico</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Creación de piezas visuales impactantes que comunican el mensaje correcto.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-fingerprint text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Branding</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Desarrollo de identidad corporativa sólida, memorable y coherente.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-megaphone text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Diseño Publicitario</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Estrategias visuales orientadas a la conversión y captación de atención.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-camera text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Fotografía</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Captura profesional de imágenes para productos, eventos o corporativo.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-film-strip text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Edición de Video</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Postproducción y montaje audiovisual para un storytelling cautivador.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-video-camera text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Motion Graphics</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Animación de elementos gráficos para dinamizar marcas y contenido.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-device-mobile text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Diseño UX/UI</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Interfaces intuitivas y experiencias de usuario centradas en la funcionalidad.</p>
+                    </div>
+
+                    <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent hover:bg-white/[0.03] transition-all duration-300 group service-card">
+                        <div class="w-14 h-14 rounded-full bg-dark flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                            <i class="ph ph-book-open text-2xl text-accent group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-display">Diseño Editorial</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">Diagramación profesional de revistas, libros, catálogos y memorias.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portafolio" class="py-24 relative z-10 bg-darker">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gsap-fade-up gap-6">
+                    <div>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Portafolio</h2>
+                        <p class="text-gray-300 text-lg">Una selección de mis proyectos más destacados.</p>
+                    </div>
+                    
+                    <!-- Filters -->
+                    <div class="flex flex-wrap gap-2 md:justify-end" id="portfolio-filters">
+                        <button class="filter-btn active px-4 py-2 rounded-full border border-white/10 bg-white/5 text-white text-sm hover:bg-accent hover:border-accent hover:text-white focus:outline-none transition-colors" data-filter="all">Todos</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-gray-400 text-sm hover:text-white hover:border-white/30 focus:outline-none transition-colors" data-filter="branding">Branding</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-gray-400 text-sm hover:text-white hover:border-white/30 focus:outline-none transition-colors" data-filter="uxui">UX/UI</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-gray-400 text-sm hover:text-white hover:border-white/30 focus:outline-none transition-colors" data-filter="publicidad">Publicidad</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-gray-400 text-sm hover:text-white hover:border-white/30 focus:outline-none transition-colors" data-filter="foto">Fotografía</button>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                    <!-- Inyectado vía JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for Portfolio -->
+        <div id="portfolio-modal" class="fixed inset-0 z-[100] bg-dark/95 backdrop-blur-xl hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 p-4 md:p-12" aria-modal="true" role="dialog">
+            <button id="close-modal" class="absolute top-6 right-6 text-white text-3xl hover:text-accent transition-colors bg-white/10 w-12 h-12 rounded-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent">
+                <i class="ph ph-x"></i>
+            </button>
+            <div class="max-w-5xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar glass rounded-3xl border border-white/10 p-6 md:p-10 flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-3/5 rounded-2xl overflow-hidden bg-dark">
+                    <img id="modal-img" src="" alt="Project" class="w-full h-auto object-cover" loading="lazy">
+                </div>
+                <div class="w-full md:w-2/5 flex flex-col justify-center">
+                    <span id="modal-category" class="text-accent text-sm font-bold uppercase tracking-wider mb-2"></span>
+                    <h3 id="modal-title" class="text-3xl font-display font-bold text-white mb-4"></h3>
+                    <p id="modal-desc" class="text-gray-300 mb-6 leading-relaxed"></p>
+                    <a href="#" class="inline-flex items-center gap-2 text-white font-medium hover:text-accent transition-colors border-b border-white/20 pb-1 w-max">
+                        Ver Proyecto Completo <i class="ph ph-arrow-up-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Skills -->
+        <section id="experiencia" class="py-24 relative z-10">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    
+                    <!-- Timeline -->
+                    <div class="gsap-fade-up">
+                        <h2 class="font-display text-4xl font-bold text-white mb-10 flex items-center gap-3">
+                            <i class="ph ph-briefcase text-accent"></i> Experiencia
+                        </h2>
+                        <div class="relative border-l border-white/10 ml-3 md:ml-4 space-y-10 pb-4">
+                            
+                            <!-- Timeline Item -->
+                            <div class="relative pl-8 md:pl-10">
+                                <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-dark border-2 border-accent"></span>
+                                <div class="glass p-6 rounded-2xl border border-white/5">
+                                    <span class="text-accent text-sm font-bold mb-1 block">2020 - Presente</span>
+                                    <h3 class="text-xl font-bold text-white font-display mb-1">Senior Creative Designer & Director</h3>
+                                    <h4 class="text-gray-400 text-sm mb-4 font-medium">Bogofija / Freelance</h4>
+                                    <p class="text-gray-300 text-sm leading-relaxed">Dirección de arte, creación de identidad visual, desarrollo web y gestión de comunidad digital. Liderazgo en proyectos de alto impacto.</p>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item -->
+                            <div class="relative pl-8 md:pl-10">
+                                <span class="absolute -left-2.5 top-1.5 w-5 h-5 rounded-full bg-dark border-2 border-white/30"></span>
+                                <div class="glass p-6 rounded-2xl border border-white/5 opacity-80">
+                                    <span class="text-gray-400 text-sm font-bold mb-1 block">2016 - 2020</span>
+                                    <h3 class="text-xl font-bold text-white font-display mb-1">Diseñador Gráfico & Motion</h3>
+                                    <h4 class="text-gray-400 text-sm mb-4 font-medium">Agencias y Corporativo</h4>
+                                    <p class="text-gray-300 text-sm leading-relaxed">Desarrollo de campañas publicitarias, branding, diseño editorial, animación 2D y contenido audiovisual para diversas marcas.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Software / Skills -->
+                    <div id="software" class="gsap-fade-up">
+                        <h2 class="font-display text-4xl font-bold text-white mb-10 flex items-center gap-3">
+                            <i class="ph ph-code text-accent"></i> Software & Skills
+                        </h2>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-200 font-medium text-sm flex items-center gap-2"><i class="ph ph-palette"></i> Adobe Photoshop & Illustrator</span>
+                                    <span class="text-accent text-sm font-bold">95%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full skill-progress" data-width="95" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-200 font-medium text-sm flex items-center gap-2"><i class="ph ph-video"></i> After Effects & Premiere Pro</span>
+                                    <span class="text-accent text-sm font-bold">90%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full skill-progress" data-width="90" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-200 font-medium text-sm flex items-center gap-2"><i class="ph ph-figma-logo"></i> Figma & UX/UI</span>
+                                    <span class="text-accent text-sm font-bold">85%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full skill-progress" data-width="85" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-200 font-medium text-sm flex items-center gap-2"><i class="ph ph-file-html"></i> HTML, CSS & Webflow</span>
+                                    <span class="text-accent text-sm font-bold">80%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full skill-progress" data-width="80" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-gray-200 font-medium text-sm flex items-center gap-2"><i class="ph ph-camera"></i> Fotografía y Edición</span>
+                                    <span class="text-accent text-sm font-bold">95%</span>
+                                </div>
+                                <div class="w-full bg-white/5 rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full skill-progress" data-width="95" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photography Section -->
+        <section id="fotografia" class="py-24 relative z-10 bg-darker overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="glass rounded-[2rem] overflow-hidden border border-white/10 flex flex-col lg:flex-row">
+                    <div class="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center relative">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-accent opacity-20 blur-[50px] rounded-full pointer-events-none"></div>
+                        <i class="ph ph-camera-plus text-5xl text-accent mb-6"></i>
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">Capturando la <br><span class="text-gradient">Realidad</span></h2>
+                        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                            Más allá del diseño digital, la fotografía es mi herramienta para contar historias reales. Desde fotografía de producto y corporativa, hasta cobertura de eventos y retratos. Cada captura está pensada con composición, iluminación y un toque cinematográfico.
+                        </p>
+                        <a href="#portafolio" onclick="document.querySelector('[data-filter=\'foto\']').click()" class="inline-flex items-center justify-center gap-2 text-white font-medium border border-white/30 px-6 py-3 rounded-full hover:bg-white hover:text-dark transition-all duration-300 w-max focus:outline-none focus:ring-2 focus:ring-white/50">
+                            Ver Galería Fotográfica
+                        </a>
+                    </div>
+                    <div class="lg:w-1/2 h-[400px] lg:h-auto relative overflow-hidden">
+                        <!-- Parallax image mejorada. GPU activada -->
+                        <img src="https://i.ibb.co/mF9LzSjK/fotografo.jpg" alt="Art Sneyder Fotógrafo" class="w-full h-full object-cover object-center absolute inset-0 will-change-transform" id="photo-parallax" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-r from-card to-transparent hidden lg:block pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent block lg:hidden pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Marquee Section -->
+        <section id="clientes" class="py-20 relative z-10 border-y border-white/5 bg-dark">
+            <div class="text-center mb-10">
+                <p class="text-gray-400 uppercase tracking-widest text-sm font-bold">Marcas que han confiado en mi trabajo</p>
+            </div>
+            
+            <div class="marquee-wrapper w-full">
+                <div class="marquee-content gap-16 md:gap-24 px-8 items-center flex">
+                    <!-- Elementos texto de marcas con contraste respetado -->
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">BrandStudio</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Nexus Corp</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Bogofija</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Creative Labs</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">TechVision</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Alpha Design</div>
+                    
+                    <!-- Duplicados para loop sin saltos -->
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">BrandStudio</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Nexus Corp</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Bogofija</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Creative Labs</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">TechVision</div>
+                    <div class="text-2xl font-display font-bold text-gray-500 hover:text-white transition-colors cursor-default">Alpha Design</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media (Bento Grid) Ajustado por Accesibilidad -->
+        <section id="redes" class="py-24 relative z-10 bg-darker">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center max-w-3xl mx-auto mb-16 gsap-fade-up">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">Conectemos</h2>
+                    <p class="text-gray-300 text-lg">Sígueme en mis redes sociales y conoce más de mi día a día y proceso creativo.</p>
+                </div>
+
+                <!-- Bento optimizado visualmente para no perder contraste -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[150px] gsap-fade-up">
+                    
+                    <!-- YouTube (Fondo sutil, icono color real, legibilidad garantizada) -->
+                    <a href="https://www.youtube.com/@sneyderriano" target="_blank" class="bento-card col-span-2 row-span-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#FF0000]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-youtube-logo text-5xl text-[#FF0000] relative z-10"></i>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold text-white font-display">YouTube</h3>
+                            <p class="text-gray-300 group-hover:text-white transition-colors">@sneyderriano</p>
+                        </div>
+                        <i class="ph ph-arrow-up-right absolute top-6 right-6 text-2xl text-gray-500 group-hover:text-white transition-colors"></i>
+                    </a>
+
+                    <!-- Behance -->
+                    <a href="https://www.behance.net/art-sneyder" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#0057ff]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-behance-logo text-4xl text-[#3b82f6] relative z-10"></i> <!-- Azul ajustado para oscuros -->
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">Behance</h3>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/artsneyder" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#0a66c2]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-linkedin-logo text-4xl text-[#60a5fa] relative z-10"></i> <!-- Azul más claro -->
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">LinkedIn</h3>
+                        </div>
+                    </a>
+
+                    <!-- IG Diseño -->
+                    <a href="https://www.instagram.com/artsneyder/" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#ee2a7b]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-instagram-logo text-4xl text-[#f472b6] relative z-10"></i>
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">IG Diseño</h3>
+                        </div>
+                    </a>
+
+                    <!-- IG Personal -->
+                    <a href="https://www.instagram.com/sneyder.rh/" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#f9ce34]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-instagram-logo text-4xl text-gray-300 relative z-10"></i>
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">IG Personal</h3>
+                        </div>
+                    </a>
+
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@sneyder.rh" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#00f2fe]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-tiktok-logo text-4xl text-gray-200 relative z-10"></i>
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">TikTok</h3>
+                        </div>
+                    </a>
+
+                    <!-- Facebook Diseño -->
+                    <a href="https://web.facebook.com/artsneyder" target="_blank" class="bento-card col-span-1 row-span-1 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group border border-white/5 bg-card">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[#1877F2]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <i class="ph-fill ph-facebook-logo text-4xl text-[#60a5fa] relative z-10"></i>
+                        <div class="relative z-10">
+                            <h3 class="text-lg font-bold text-white font-display">FB Diseño</h3>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="py-24 relative z-10">
+            <div class="container mx-auto px-6 md:px-12">
+                
+                <!-- Conoce Más -->
+                <div class="mb-20 text-center gsap-fade-up">
+                    <h3 class="text-2xl font-display font-bold text-white mb-6">Conoce más sobre mí</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://linktr.ee/artsneyder" target="_blank" class="glass px-6 py-3 rounded-full text-white font-medium hover:bg-white hover:text-dark transition-all duration-300 flex items-center gap-2 border border-white/10">
+                            <i class="ph ph-link"></i> Linktree Profesional
+                        </a>
+                        <a href="https://linktr.ee/sneyder.rh" target="_blank" class="glass px-6 py-3 rounded-full text-white font-medium hover:bg-white hover:text-dark transition-all duration-300 flex items-center gap-2 border border-white/10">
+                            <i class="ph ph-link"></i> Linktree Personal
+                        </a>
+                        <a href="https://vimeo.com/309180306?fl=pl&fe=vl" target="_blank" class="glass px-6 py-3 rounded-full text-accent font-medium hover:bg-accent hover:text-white transition-all duration-300 flex items-center gap-2 border border-accent/30">
+                            <i class="ph ph-file-pdf"></i> Ver Currículum
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 bg-darker rounded-[2rem] p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent opacity-10 blur-[80px] rounded-full pointer-events-none"></div>
+
+                    <!-- Contact Info -->
+                    <div class="z-10">
+                        <h2 class="font-display text-4xl md:text-5xl font-bold text-white mb-6">Hablemos de tu <br>próximo <span class="text-accent">proyecto</span></h2>
+                        <p class="text-gray-300 text-lg mb-10 leading-relaxed">
+                            ¿Tienes una idea en mente? Estoy listo para ayudarte a darle vida. Completa el formulario o contáctame directamente.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                                    <i class="ph ph-envelope-simple text-xl text-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">Correo Electrónico</p>
+                                    <a href="mailto:bogofija@gmail.com" class="text-white font-medium text-lg hover:text-accent transition-colors">bogofija@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                                    <i class="ph ph-whatsapp-logo text-xl text-accent"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-400 uppercase tracking-wider font-bold">WhatsApp</p>
+                                    <a href="https://api.whatsapp.com/send?phone=573118113811" target="_blank" class="text-white font-medium text-lg hover:text-accent transition-colors">+57 311 811 3811</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="z-10">
+                        <form id="contact-form" class="space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="form-name">Nombre Completo</label>
+                                    <input type="text" id="form-name" required class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="form-company">Empresa (Opcional)</label>
+                                    <input type="text" id="form-company" class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600" placeholder="Tu Empresa S.A.S">
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="form-email">Correo Electrónico</label>
+                                    <input type="email" id="form-email" required class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600" placeholder="hola@correo.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-300 mb-2" for="form-subject">Asunto</label>
+                                    <input type="text" id="form-subject" required class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600" placeholder="Cotización Branding">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-300 mb-2" for="form-message">Mensaje</label>
+                                <textarea id="form-message" required rows="4" class="w-full bg-dark border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent transition-colors placeholder-gray-600 resize-none" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-accent hover:bg-accentHover text-white px-8 py-4 rounded-xl font-medium transition-all duration-300 shadow-[0_0_15px_rgba(0,85,255,0.3)] hover:shadow-[0_0_25px_rgba(0,85,255,0.6)] flex items-center justify-center gap-2 text-lg focus:ring-4 focus:ring-accent/50">
+                                Enviar por WhatsApp <i class="ph ph-whatsapp-logo text-xl"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-darker pt-16 pb-8 border-t border-white/5 relative z-10">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
+                
+                <div class="flex flex-col items-center md:items-start">
+                    <img src="https://i.ibb.co/fYrzHHVH/logo-art-sneyder.png" alt="Art Sneyder" class="w-16 mb-4" loading="lazy">
+                    <p class="text-gray-400 text-sm max-w-xs text-center md:text-left">Diseño Gráfico, UX/UI y Dirección Creativa de alto nivel.</p>
+                </div>
+
+                <div class="glass p-6 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center gap-6 max-w-lg">
+                    <img src="https://i.ibb.co/pBsqV58k/Logo-Bogofija-2021-simbolo.png" alt="Bogofija Simbolo" class="w-12" loading="lazy">
+                    <div class="text-center sm:text-left">
+                        <p class="text-white font-medium text-sm mb-1">También puedes seguir mi comunidad ciclista</p>
+                        <img src="https://i.ibb.co/JRXGK5XL/Logo-Bogofija-2021.png" alt="Bogofija" class="h-6 mx-auto sm:mx-0 mb-3 opacity-80" loading="lazy">
+                    </div>
+                    <a href="https://bogofija.netlify.app/" target="_blank" class="bg-white/10 hover:bg-white text-white hover:text-dark px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-300 flex-shrink-0">
+                        Visitar
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 font-medium">
+                <p>&copy; <span id="year"></span> Art Sneyder. Todos los derechos reservados.</p>
+                <p>Diseñado y desarrollado por <span class="text-white">Art Sneyder</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // 1. Loader Logic
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.visibility = 'hidden';
+                    loader.style.display = 'none';
+                    ScrollTrigger.refresh();
+                }, 600);
+            }, 1000); 
+
+            // 2. Custom Cursor - TOTALMENTE OPTIMIZADO (Evita Reflow de la CPU)
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            // Usamos gsap.quickTo para delegar el cálculo y la animación de transform directo a GSAP (GPU)
+            const xToDot = gsap.quickTo(cursorDot, "x", {duration: 0.05, ease: "power3"});
+            const yToDot = gsap.quickTo(cursorDot, "y", {duration: 0.05, ease: "power3"});
+            const xToOutline = gsap.quickTo(cursorOutline, "x", {duration: 0.3, ease: "power3"});
+            const yToOutline = gsap.quickTo(cursorOutline, "y", {duration: 0.3, ease: "power3"});
+
+            window.addEventListener('mousemove', (e) => {
+                xToDot(e.clientX);
+                yToDot(e.clientY);
+                xToOutline(e.clientX);
+                yToOutline(e.clientY);
+            });
+
+            // Hover styles for cursor
+            const interactables = document.querySelectorAll('a, button, input, textarea, .service-card, .bento-card');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    gsap.to(cursorOutline, { scale: 1.5, backgroundColor: 'rgba(255, 102, 0, 0.1)', duration: 0.2 });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(cursorOutline, { scale: 1, backgroundColor: 'transparent', duration: 0.2 });
+                });
+            });
+
+            // 3. Smooth Scrolling (Lenis)
+            const lenis = new Lenis({
+                duration: 0.7, // Reducido para mayor rapidez y menor sensación de "pesadez"
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+            })
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 4. Navbar Shrink - OPTIMIZADO (Sin window.addEventListener 'scroll' costoso, conectado a Lenis y con control de estado)
+            const navbar = document.getElementById('navbar');
+            let isNavScrolled = false;
+            let scrollTimeout; // Para controlar la optimización de pointer-events
+            
+            lenis.on('scroll', (e) => {
+                // Optimización crítica: Desactiva eventos de puntero (hover) durante el scroll para evitar repaints masivos
+                if (!document.body.classList.contains('pointer-events-none')) {
+                    document.body.classList.add('pointer-events-none');
+                }
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    document.body.classList.remove('pointer-events-none');
+                }, 150);
+
+                if (e.animatedScroll > 50 && !isNavScrolled) {
+                    isNavScrolled = true;
+                    navbar.classList.add('bg-dark/90', 'backdrop-blur-lg', 'py-3', 'border-b', 'border-white/5');
+                    navbar.classList.remove('py-6');
+                } else if (e.animatedScroll <= 50 && isNavScrolled) {
+                    isNavScrolled = false;
+                    navbar.classList.remove('bg-dark/90', 'backdrop-blur-lg', 'py-3', 'border-b', 'border-white/5');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // Mobile Menu
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            mobileBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.style.opacity = '1';
+                    mobileMenu.style.pointerEvents = 'auto';
+                    mobileBtn.innerHTML = '<i class="ph ph-x"></i>';
+                } else {
+                    mobileMenu.style.opacity = '0';
+                    mobileMenu.style.pointerEvents = 'none';
+                    mobileBtn.innerHTML = '<i class="ph ph-list"></i>';
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.opacity = '0';
+                    mobileMenu.style.pointerEvents = 'none';
+                    mobileBtn.innerHTML = '<i class="ph ph-list"></i>';
+                    isMenuOpen = false;
+                });
+            });
+
+            // 5. Typing Effect
+            var typed = new Typed('#typed-text', {
+                strings: ['Diseñador Gráfico.', 'Creative Designer.', 'UX/UI Designer.', 'Fotógrafo.', 'Motion Designer.'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true,
+                cursorChar: '|',
+            });
+
+            // 6. Stats Counter Animation - Optimizado (Usando IntersectionObserver Nativo, muy eficiente)
+            const counters = document.querySelectorAll('.counter');
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0;
+                        const updateCount = () => {
+                            const inc = target / 50; 
+                            if (count < target) {
+                                count += inc;
+                                counter.innerText = Math.ceil(count);
+                                requestAnimationFrame(updateCount); // Uso de RAF nativo para 60fps
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => counterObserver.observe(counter));
+
+            // 7. Portfolio Data & Filtering
+            const projects = [
+                { id: 1, title: 'Rebranding Nexus', category: 'branding', img: 'https://placehold.co/800x600/121212/ffffff?text=Branding+Project+1', desc: 'Desarrollo completo de identidad visual, manual de marca y aplicaciones corporativas para Nexus Corp.' },
+                { id: 2, title: 'App Financiera UI', category: 'uxui', img: 'https://placehold.co/800x600/121212/0055FF?text=UX/UI+App', desc: 'Diseño de interfaz y experiencia de usuario para aplicación móvil del sector Fintech. Prototipado en Figma.' },
+                { id: 3, title: 'Campaña "El Origen"', category: 'publicidad', img: 'https://placehold.co/800x600/121212/ffaa00?text=Campaña+Publicidad', desc: 'Dirección de arte y diseño de piezas gráficas para campaña publicitaria digital e impresa.' },
+                { id: 4, title: 'Retrato Urbano', category: 'foto', img: 'https://placehold.co/800x600/121212/444444?text=Fotografia+Urbana', desc: 'Sesión fotográfica en locaciones exteriores, enfoque en moda urbana y lifestyle.' },
+                { id: 5, title: 'EcoPackaging', category: 'branding', img: 'https://placehold.co/800x600/121212/ffffff?text=Eco+Packaging', desc: 'Diseño de empaques sostenibles para línea de productos ecológicos.' },
+                { id: 6, title: 'Dashboard Analytics', category: 'uxui', img: 'https://placehold.co/800x600/121212/0055FF?text=Web+Dashboard', desc: 'Diseño de panel de control web, optimizando la visualización de datos complejos.' },
+            ];
+
+            const portfolioGrid = document.getElementById('portfolio-grid');
+            
+            function renderPortfolio(filter = 'all') {
+                portfolioGrid.innerHTML = '';
+                const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+                
+                filtered.forEach(proj => {
+                    const el = document.createElement('div');
+                    el.className = 'glass rounded-2xl overflow-hidden group cursor-pointer border border-white/5 relative focus-within:ring-2 focus-within:ring-accent';
+                    el.innerHTML = `
+                        <div class="relative overflow-hidden aspect-[4/3]">
+                            <img src="${proj.img}" alt="${proj.title}" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 will-change-transform">
+                            <div class="absolute inset-0 bg-accent/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <i class="ph ph-plus text-4xl text-white transform scale-50 group-hover:scale-100 transition-transform duration-300 delay-100"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-accent text-xs font-bold uppercase tracking-wider mb-2 block">${proj.category}</span>
+                            <h3 class="text-xl font-display font-bold text-white group-hover:text-accent transition-colors">${proj.title}</h3>
+                        </div>
+                    `;
+                    el.addEventListener('click', () => openModal(proj));
+                    // Handle keyboard accessibility
+                    el.tabIndex = 0;
+                    el.addEventListener('keydown', (e) => { if(e.key === 'Enter') openModal(proj) });
+                    portfolioGrid.appendChild(el);
+                });
+            }
+
+            renderPortfolio();
+
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-white/5', 'text-white', 'border-white/10');
+                        b.classList.add('bg-transparent', 'text-gray-400');
+                    });
+                    e.target.classList.remove('bg-transparent', 'text-gray-400');
+                    e.target.classList.add('bg-white/5', 'text-white', 'border-white/10');
+                    
+                    const filter = e.target.getAttribute('data-filter');
+                    
+                    gsap.to(portfolioGrid.children, {
+                        opacity: 0,
+                        y: 10,
+                        duration: 0.2,
+                        stagger: 0.05,
+                        onComplete: () => {
+                            renderPortfolio(filter);
+                            gsap.fromTo(portfolioGrid.children, 
+                                { opacity: 0, y: 10 },
+                                { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }
+                            );
+                        }
+                    });
+                });
+            });
+
+            // 8. Modal Logic
+            const modal = document.getElementById('portfolio-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            
+            function openModal(project) {
+                document.getElementById('modal-img').src = project.img;
+                document.getElementById('modal-category').innerText = project.category;
+                document.getElementById('modal-title').innerText = project.title;
+                document.getElementById('modal-desc').innerText = project.desc;
+                
+                modal.classList.remove('hidden');
+                requestAnimationFrame(() => modal.style.opacity = '1');
+                lenis.stop(); 
+            }
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.opacity = '0';
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    lenis.start();
+                }, 300);
+            });
+
+            // 9. GSAP Scroll Animations
+            const fadeUpElements = document.querySelectorAll('.gsap-fade-up');
+            fadeUpElements.forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 30 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.8, 
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 90%", 
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            // Animate Skill Bars
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-width');
+                ScrollTrigger.create({
+                    trigger: '#software',
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(bar, { width: targetWidth + '%', duration: 1.5, ease: "power2.out" });
+                    }
+                });
+            });
+
+            // Parallax image
+            gsap.to("#photo-parallax", {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#fotografia",
+                    start: "top bottom", 
+                    end: "bottom top",
+                    scrub: true // Cambiado a 'true' para sincronización nativa sin retraso de JS extra
+                } 
+            });
+
+            // 10. WhatsApp Form
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('form-name').value;
+                const company = document.getElementById('form-company').value;
+                const email = document.getElementById('form-email').value;
+                const subject = document.getElementById('form-subject').value;
+                const message = document.getElementById('form-message').value;
+
+                let text = `Hola Art Sneyder,%0A%0AMi nombre es *${name}*`;
+                if(company) text += ` de *${company}*`;
+                text += `.%0A%0A*Asunto:* ${subject}%0A*Correo:* ${email}%0A%0A*Mensaje:*%0A${message}`;
+
+                const whatsappURL = `https://api.whatsapp.com/send?phone=573118113811&text=${text}`;
+                window.open(whatsappURL, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
